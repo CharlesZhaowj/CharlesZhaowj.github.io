@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: 技术 | 上班族的奇妙冒险</title>
+  <title>JVM学习笔记_3 | 上班族的奇妙冒险</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="ブロックを初めて、よろしくお願いいたします。">
-<meta name="keywords" content="jojo的奇妙冒险、哲学、心理学、自学日语中">
-<meta property="og:type" content="website">
-<meta property="og:title" content="上班族的奇妙冒险">
-<meta property="og:url" content="http://yoursite.com/tags/技术/index.html">
+  <meta name="description" content="JVM学习笔记3_虚拟机性能监控与故障处理工具参考资料周志明《深入理解Java虚拟机》">
+<meta name="keywords" content="Java,JVM,技术">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JVM学习笔记_3">
+<meta property="og:url" content="http://yoursite.com/2019/07/03/JVM学习笔记-3/index.html">
 <meta property="og:site_name" content="上班族的奇妙冒险">
-<meta property="og:description" content="ブロックを初めて、よろしくお願いいたします。">
+<meta property="og:description" content="JVM学习笔记3_虚拟机性能监控与故障处理工具参考资料周志明《深入理解Java虚拟机》">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-06T12:02:30.465Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="上班族的奇妙冒险">
-<meta name="twitter:description" content="ブロックを初めて、よろしくお願いいたします。">
+<meta name="twitter:title" content="JVM学习笔记_3">
+<meta name="twitter:description" content="JVM学习笔记3_虚拟机性能监控与故障处理工具参考资料周志明《深入理解Java虚拟机》">
   
     <link rel="alternative" href="/atom.xml" title="上班族的奇妙冒险" type="application/atom+xml">
   
@@ -170,36 +171,312 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-JVM学习笔记-3" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      JVM学习笔记_3
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/03/JVM学习笔记-3/" class="archive-article-date">
+
+        
+        <a href="/2019/07/03/JVM学习笔记-3/" class="archive-article-date">
   	<time datetime="2019-07-03T14:07:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-03</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/03/JVM学习笔记-3/">JVM学习笔记_3</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
+          <!-- 需要添加的位置 -->
+          <!-- 开始添加字数统计-->
           
+            <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">1.3k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">4分</span>
+      </span>
+    </span>
+</div>
+            
+          <!-- 添加完成 -->
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="JVM学习笔记3-虚拟机性能监控与故障处理工具"><a href="#JVM学习笔记3-虚拟机性能监控与故障处理工具" class="headerlink" title="JVM学习笔记3_虚拟机性能监控与故障处理工具"></a>JVM学习笔记3_虚拟机性能监控与故障处理工具</h1><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>周志明《深入理解Java虚拟机》<br><a id="more"></a></p>
+<h2 id="系统问题的定位"><a href="#系统问题的定位" class="headerlink" title="系统问题的定位"></a>系统问题的定位</h2><ol>
+<li>知识、经验是关键基础</li>
+<li>数据（运行日志、异常堆栈、GC日志、线程快照/threaddump/javacore文件、堆转储快照/heapdump/hprof文件、etc）</li>
+<li>工具不是万能的，还是要看自己怎么用</li>
+</ol>
+<h2 id="JDK命令行工具"><a href="#JDK命令行工具" class="headerlink" title="JDK命令行工具"></a>JDK命令行工具</h2><ol>
+<li>Sun送给Java开发的</li>
+<li>是<code>jdk/lib/tool.jar</code>类库的一层包装</li>
+<li>不同的JDK和OS支持的功能可能差异较大</li>
+</ol>
+<h3 id="Sun-JDK-监控和故障处理工具一览"><a href="#Sun-JDK-监控和故障处理工具一览" class="headerlink" title="Sun JDK 监控和故障处理工具一览"></a>Sun JDK 监控和故障处理工具一览</h3><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>全名</th>
+<th>主要作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>jps</td>
+<td>JVM Process Status Tool</td>
+<td>显示指定系统内所有的HotSpot虚拟机进程</td>
+</tr>
+<tr>
+<td>jstat</td>
+<td>JVM statistics Monitoring Tool</td>
+<td>收集HotSpot虚拟机各方面的运行数据</td>
+</tr>
+<tr>
+<td>jinfo</td>
+<td>Configuration Info for Java</td>
+<td>显示虚拟机配置信息</td>
+</tr>
+<tr>
+<td>jmap</td>
+<td>Memory Map for Java</td>
+<td>生成虚拟机的内存转储快照（heapdump文件）</td>
+</tr>
+<tr>
+<td>jhat</td>
+<td>JVM heap dump browser</td>
+<td>分析heapdump文件，建立一个http/html服务器，用户可以在浏览器上查看分析结果</td>
+</tr>
+<tr>
+<td>jstack</td>
+<td>stack trace for java，显示虚拟机的线程快照</td>
+</tr>
+</tbody>
+</table>
+<h3 id="jps-虚拟机进程状况工具"><a href="#jps-虚拟机进程状况工具" class="headerlink" title="jps_虚拟机进程状况工具"></a>jps_虚拟机进程状况工具</h3><p>很多JDK小工具都参考了UNIX命令的命名方式</p>
+<ol>
+<li>jps能查到虚拟机进程、显示虚拟机主类名称</li>
+<li>LVMID(local virtual machine Identifier)对应本地操作系统的PID</li>
+<li>格式<code>jps [options] [hostid]</code>，其中<code>hostid</code>是RMI注册表种注册的主机名（用RMI协议查询开启了RMI服务的远程虚拟机进程状态）</li>
+</ol>
+<h4 id="jps工具主要选项"><a href="#jps工具主要选项" class="headerlink" title="jps工具主要选项"></a>jps工具主要选项</h4><table>
+<thead>
+<tr>
+<th>选项</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-q</td>
+<td>只输出LVMID，省略主类名称</td>
+</tr>
+<tr>
+<td>-m</td>
+<td>输出虚拟机启动时传给主类的参数</td>
+</tr>
+<tr>
+<td>-l</td>
+<td>输出主类全名，如果进程执行的是Jar包，输出Jar路径</td>
+</tr>
+<tr>
+<td>-v</td>
+<td>输出虚拟机进程启动时的JVM参数</td>
+</tr>
+</tbody>
+</table>
+<h3 id="jstat-虚拟机统计信息监视工具"><a href="#jstat-虚拟机统计信息监视工具" class="headerlink" title="jstat_虚拟机统计信息监视工具"></a>jstat_虚拟机统计信息监视工具</h3><ol>
+<li>显示本地或远程（还是RMI）虚拟机进程中的类装载、内存、辣鸡收集、JIT编译等运行数据</li>
+<li>不通过GUI图形界面</li>
+<li>格式<code>jstat [option vmid [interval[s|ms] [count]]]</code>(PS: 远程的虚拟机进程VMID格式应为：<code>[protocol:][//]lvmid[@hostname[:port]/servername</code>)</li>
+<li>参数<code>interval</code>以及<code>count</code>代表查询间隔和次数，如果省略就说明只查一次，举例：<code>jstat -gc 2764 250 20</code>表示250毫秒一次查询进程2764的gc状况，共250次</li>
+</ol>
+<h4 id="jstat工具主要选项"><a href="#jstat工具主要选项" class="headerlink" title="jstat工具主要选项"></a>jstat工具主要选项</h4><table>
+<thead>
+<tr>
+<th>选项</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-class</td>
+<td>类装载、卸载数量、总空间以及类装载耗时</td>
+</tr>
+<tr>
+<td>-gc</td>
+<td>监视Java堆状况、包括Eden区，两个survivor区、老年代、永久代等的容量、已用空间、GC耗时等信息合计</td>
+</tr>
+<tr>
+<td>-gccapacity</td>
+<td>基本与-gc相同，主要关注堆中各个区域使用到的最大最小空间</td>
+</tr>
+<tr>
+<td>-gcutil</td>
+<td>监视内容与-gc基本相同，主要关注已使用空间占总空间的百分比</td>
+</tr>
+<tr>
+<td>-gccause</td>
+<td>与-gcutil功能一样，会额外输出导致上次gc的原因</td>
+</tr>
+<tr>
+<td>-gcnew</td>
+<td>监视新生代GC状况</td>
+</tr>
+<tr>
+<td>-gcnewcapacity</td>
+<td>gcnew和gccapacity的结合</td>
+</tr>
+<tr>
+<td>-gcold</td>
+<td>监视老年代GC状况</td>
+</tr>
+<tr>
+<td>-gcoldcapacity</td>
+<td>gcold+gccapacity</td>
+</tr>
+<tr>
+<td>-gcpermcapacity</td>
+<td>输出永久代使用到的最大、最小空间</td>
+</tr>
+<tr>
+<td>-compiler</td>
+<td>输出JIT编译器编译过的方法、耗时等信息</td>
+</tr>
+<tr>
+<td>-printcompilation</td>
+<td>输出已经被JIT编译的方法</td>
+</tr>
+</tbody>
+</table>
+<h3 id="jinfo-Java信息配置工具"><a href="#jinfo-Java信息配置工具" class="headerlink" title="jinfo: Java信息配置工具"></a>jinfo: Java信息配置工具</h3><ol>
+<li>实时查看和调整虚拟机各项参数</li>
+<li>格式<code>jinfo [option] pid</code></li>
+<li>比如查询<code>CMSInitiatingOccupancyFraction</code>参数值:<code>jinfo -flag CMSInitiatingOccupancyFraction 1233</code></li>
+</ol>
+<h3 id="jmap-Java内存映像工具"><a href="#jmap-Java内存映像工具" class="headerlink" title="jmap: Java内存映像工具"></a>jmap: Java内存映像工具</h3><ol>
+<li>生成堆转储快照（称作 headdump 或者 dump）</li>
+<li>除了获取dump文件，还可以查询finalize执行队列、Java堆和永久代的详细信息（例如空间使用率、选择的GC方案等）</li>
+<li>命令格式： <code>jmap [ option ] pid</code></li>
+</ol>
+<h4 id="jmap工具主要选项"><a href="#jmap工具主要选项" class="headerlink" title="jmap工具主要选项"></a>jmap工具主要选项</h4><table>
+<thead>
+<tr>
+<th>选项</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-dump</td>
+<td>生成Java堆转储快照，格式为<code>-dump:[live, ]format=b, file=&lt;filename&gt;</code>,其中live子参数说明是否只dump出存活的对象</td>
+</tr>
+<tr>
+<td>-finalizerinfo</td>
+<td>显示在F-Queue中等待Finalizer线程执行finalize方法的对象，只在Linux/Solaris中生效</td>
+</tr>
+<tr>
+<td>-heap</td>
+<td>显示Java堆详细信息，如GC策略、参数配置、分代状况等，只在Linux/Solaris中生效</td>
+</tr>
+<tr>
+<td>-histo</td>
+<td>显示堆中对象统计信息，包括类、实例数量、合计容量等</td>
+</tr>
+<tr>
+<td>-permstat</td>
+<td>以ClassLoader为统计口径显示永久代内存状态。只在Linux/Solaris平台下有效</td>
+</tr>
+<tr>
+<td>-F</td>
+<td>当虚拟机进程对-dump选项没有响应时，使用该选项可以强制生成快照</td>
+</tr>
+</tbody>
+</table>
+<h3 id="jhat-虚拟机堆转储快照分析工具"><a href="#jhat-虚拟机堆转储快照分析工具" class="headerlink" title="jhat: 虚拟机堆转储快照分析工具"></a>jhat: 虚拟机堆转储快照分析工具</h3><ol>
+<li>内置了微型HTTP/HTML服务器</li>
+<li>平时一般不怎么会用的，因为分析功能比较简陋</li>
+<li>所以一般会用<code>Visual VM</code>、<code>IBM HeapAnalyzer</code>、<code>Eclipse Memoray Analyzer</code>等工具</li>
+<li>所以就不再详述le</li>
+</ol>
+<h3 id="jstack-Java堆栈分析工具"><a href="#jstack-Java堆栈分析工具" class="headerlink" title="jstack: Java堆栈分析工具"></a>jstack: Java堆栈分析工具</h3><ol>
+<li>生成虚拟机当前时刻的线程快照（一般称为 threaddump 或者 javacore 文件）</li>
+<li>线程快照–当前虚拟机内每一条线程正在执行的方法堆栈的集合。生成线程快照的作用是定位线程出现长时间停顿的原因</li>
+<li>命令格式<code>jstack [option] vmid</code></li>
+</ol>
+<h4 id="jstack工具主要选项"><a href="#jstack工具主要选项" class="headerlink" title="jstack工具主要选项"></a>jstack工具主要选项</h4><table>
+<thead>
+<tr>
+<th>选项</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-F</td>
+<td>当正常输出的请求不被响应时，强制输出线程堆栈</td>
+</tr>
+<tr>
+<td>-l</td>
+<td>除堆栈外、显示关于锁的附加信息</td>
+</tr>
+<tr>
+<td>-m</td>
+<td>如果调用到本地方法的话，可以显示C/C++</td>
+</tr>
+</tbody>
+</table>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>要恰饭的🐎<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/chika.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/kaguya.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -219,111 +496,106 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/03/JVM学习笔记-3/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/16/JVM学习笔记-2/" class="archive-article-date">
-  	<time datetime="2019-04-16T12:03:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-16</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/04/16/JVM学习笔记-2/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JVM学习笔记_2</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/16/JVM学习笔记-2/">JVM学习笔记_2</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JVM</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/30/JVM学习笔记_1/" class="archive-article-date">
-  	<time datetime="2019-03-30T14:07:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/30/JVM学习笔记_1/">JVM学习笔记1_Java内存区域与内存溢出异常</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JVM</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -350,9 +622,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

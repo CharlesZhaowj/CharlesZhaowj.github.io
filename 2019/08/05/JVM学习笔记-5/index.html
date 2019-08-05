@@ -9,14 +9,14 @@
   <title>JVM学习笔记_5_class文件_属性表补充 | 上班族的奇妙冒险</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="JVM 属性表–java class 补充参考资料《深入理解Java虚拟机》">
-<meta name="keywords" content="Java,JVM,技术">
+<meta name="keywords" content="Java,技术,JVM">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JVM学习笔记_5_class文件_属性表补充">
 <meta property="og:url" content="http://yoursite.com/2019/08/05/JVM学习笔记-5/index.html">
 <meta property="og:site_name" content="上班族的奇妙冒险">
 <meta property="og:description" content="JVM 属性表–java class 补充参考资料《深入理解Java虚拟机》">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-05T00:54:04.956Z">
+<meta property="og:updated_time" content="2019-08-05T00:56:33.998Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JVM学习笔记_5_class文件_属性表补充">
 <meta name="twitter:description" content="JVM 属性表–java class 补充参考资料《深入理解Java虚拟机》">
@@ -219,10 +219,109 @@
 <li>可以写入自己定义的属性信息，但是jvm会忽略它不认识的信息</li>
 </ul>
 <h2 id="主要属性"><a href="#主要属性" class="headerlink" title="主要属性"></a>主要属性</h2><ul>
-<li><p>主要的属性如下：</p>
-<p>  属性名|使用位置|含义<br>  –|–|–<br>  Code|方法表|Java代码编译成的字节码指令<br>  ConstantValue|字段表|final关键字定义的常量值<br>  Deprecated|类、方法、字段表|被声明为Deprecated的方法和字段<br>  Exceptions|方法表|方法抛出的异常<br>  EnclosingMethod|类文件|仅当一个类为局部类或者匿名类时才能拥有这个属性，这个属性用于标识这个类所在的外围方法<br>  InnerClasses|类文件|内部类列表<br>  LineNumberTable|Code属性|Java源码的行号与字节码指令的对应关系<br>  LocalVariableTable|Code属性|JDK 1.6中新增的属性，供新的类型检查验证其（TypeChecker)检查处理目标方法的局部变量和操作数栈所需类型是否匹配<br>  StackMapTable|Code属性|JDK1.6新增属性，供新的类型检查验证器（TypeChecker）检查和处理目标方法的局部变量和操作数栈所需要的类型是否匹配<br>  Signuture|类、方法表、字段表|JDK1.5中新增的属性，这个属性用于支持泛型情况下的方法签名（防止泛型类型信息在被擦除后签名混乱）<br>  SourceFile|类文件|记录源文件名称<br>  SourceDebugExtension|类文件|JDK1.6中新增的属性，SourceDebugExtension属性由于存储额外的调试信息。（为非Java语言编写却要编译运行在JVM的程序提供进行调试的信息）<br>  Synthetic|类、方法表、字段表|表示方法或字段为编译器自动生成的<br>  LocalVariableTypeTable|类|JDK1.5，用特征签名代替描述符<br>  RuntimeVisibleAnnotations|类、方法、字段表|JDK1.5，支持动态注解，注明注解在运行（反射调用）时的可见性<br>  RuntimeInVisibleAnnotation|类、方法、字段表|JDK1.5，与Visible相反，注明注解的不可见性<br>  AnnotationDefault|方法表|JDK1.5，记录注解类元素的默认值<br>  BootstrapMethods|类文件|JDK1.7，保存invokeddynamic指令引用的指导方法限定符</p>
-</li>
+<li>主要的属性如下：</li>
 </ul>
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>使用位置</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Code</td>
+<td>方法表</td>
+<td>Java代码编译成的字节码指令</td>
+</tr>
+<tr>
+<td>ConstantValue</td>
+<td>字段表</td>
+<td>final关键字定义的常量值</td>
+</tr>
+<tr>
+<td>Deprecated</td>
+<td>类、方法、字段表</td>
+<td>被声明为Deprecated的方法和字段</td>
+</tr>
+<tr>
+<td>Exceptions</td>
+<td>方法表</td>
+<td>方法抛出的异常</td>
+</tr>
+<tr>
+<td>EnclosingMethod</td>
+<td>类文件</td>
+<td>仅当一个类为局部类或者匿名类时才能拥有这个属性，这个属性用于标识这个类所在的外围方法</td>
+</tr>
+<tr>
+<td>InnerClasses</td>
+<td>类文件</td>
+<td>内部类列表</td>
+</tr>
+<tr>
+<td>LineNumberTable</td>
+<td>Code属性</td>
+<td>Java源码的行号与字节码指令的对应关系</td>
+</tr>
+<tr>
+<td>LocalVariableTable</td>
+<td>Code属性</td>
+<td>JDK 1.6中新增的属性，供新的类型检查验证其（TypeChecker)检查处理目标方法的局部变量和操作数栈所需类型是否匹配</td>
+</tr>
+<tr>
+<td>StackMapTable</td>
+<td>Code属性</td>
+<td>JDK1.6新增属性，供新的类型检查验证器（TypeChecker）检查和处理目标方法的局部变量和操作数栈所需要的类型是否匹配</td>
+</tr>
+<tr>
+<td>Signuture</td>
+<td>类、方法表、字段表</td>
+<td>JDK1.5中新增的属性，这个属性用于支持泛型情况下的方法签名（防止泛型类型信息在被擦除后签名混乱）</td>
+</tr>
+<tr>
+<td>SourceFile</td>
+<td>类文件</td>
+<td>记录源文件名称</td>
+</tr>
+<tr>
+<td>SourceDebugExtension</td>
+<td>类文件</td>
+<td>JDK1.6中新增的属性，SourceDebugExtension属性由于存储额外的调试信息。（为非Java语言编写却要编译运行在JVM的程序提供进行调试的信息）</td>
+</tr>
+<tr>
+<td>Synthetic</td>
+<td>类、方法表、字段表</td>
+<td>表示方法或字段为编译器自动生成的</td>
+</tr>
+<tr>
+<td>LocalVariableTypeTable</td>
+<td>类</td>
+<td>JDK1.5，用特征签名代替描述符</td>
+</tr>
+<tr>
+<td>RuntimeVisibleAnnotations</td>
+<td>类、方法、字段表</td>
+<td>JDK1.5，支持动态注解，注明注解在运行（反射调用）时的可见性</td>
+</tr>
+<tr>
+<td>RuntimeInVisibleAnnotation</td>
+<td>类、方法、字段表</td>
+<td>JDK1.5，与Visible相反，注明注解的不可见性</td>
+</tr>
+<tr>
+<td>AnnotationDefault</td>
+<td>方法表</td>
+<td>JDK1.5，记录注解类元素的默认值</td>
+</tr>
+<tr>
+<td>BootstrapMethods</td>
+<td>类文件</td>
+<td>JDK1.7，保存invokeddynamic指令引用的指导方法限定符</td>
+</tr>
+</tbody>
+</table>
 <h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><table>
 <thead>
 <tr>
@@ -422,11 +521,11 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JVM</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JVM</a>
         		</li>
       		
 		</ul>
@@ -632,7 +731,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+                <a href="javascript:void(0)" class="js-tag color3">并发</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -640,7 +739,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">并发</a>
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
               </li>
              
               <li class="article-tag-list-item">

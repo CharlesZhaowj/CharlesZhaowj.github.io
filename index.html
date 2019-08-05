@@ -172,6 +172,269 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-JVM学习笔记-5" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/05/JVM学习笔记-5/">JVM学习笔记_5_class文件_属性表补充</a>
+    </h1>
+  
+
+        
+        <a href="/2019/08/05/JVM学习笔记-5/" class="archive-article-date">
+  	<time datetime="2019-08-05T00:48:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-05</time>
+</a>
+          <!-- 需要添加的位置 -->
+          <!-- 开始添加字数统计-->
+          
+            <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">1.6k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">5分</span>
+      </span>
+    </span>
+</div>
+            
+          <!-- 添加完成 -->
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="JVM-属性表–java-class-补充"><a href="#JVM-属性表–java-class-补充" class="headerlink" title="JVM 属性表–java class 补充"></a>JVM 属性表–java class 补充</h1><h2 id="没有严谨的顺序要求"><a href="#没有严谨的顺序要求" class="headerlink" title="没有严谨的顺序要求"></a>没有严谨的顺序要求</h2><ul>
+<li>可以写入自己定义的属性信息，但是jvm会忽略它不认识的信息</li>
+</ul>
+<h2 id="主要属性"><a href="#主要属性" class="headerlink" title="主要属性"></a>主要属性</h2><ul>
+<li><p>主要的属性如下：</p>
+<p>  属性名|使用位置|含义<br>  –|–|–<br>  Code|方法表|Java代码编译成的字节码指令<br>  ConstantValue|字段表|final关键字定义的常量值<br>  Deprecated|类、方法、字段表|被声明为Deprecated的方法和字段<br>  Exceptions|方法表|方法抛出的异常<br>  EnclosingMethod|类文件|仅当一个类为局部类或者匿名类时才能拥有这个属性，这个属性用于标识这个类所在的外围方法<br>  InnerClasses|类文件|内部类列表<br>  LineNumberTable|Code属性|Java源码的行号与字节码指令的对应关系<br>  LocalVariableTable|Code属性|JDK 1.6中新增的属性，供新的类型检查验证其（TypeChecker)检查处理目标方法的局部变量和操作数栈所需类型是否匹配<br>  StackMapTable|Code属性|JDK1.6新增属性，供新的类型检查验证器（TypeChecker）检查和处理目标方法的局部变量和操作数栈所需要的类型是否匹配<br>  Signuture|类、方法表、字段表|JDK1.5中新增的属性，这个属性用于支持泛型情况下的方法签名（防止泛型类型信息在被擦除后签名混乱）<br>  SourceFile|类文件|记录源文件名称<br>  SourceDebugExtension|类文件|JDK1.6中新增的属性，SourceDebugExtension属性由于存储额外的调试信息。（为非Java语言编写却要编译运行在JVM的程序提供进行调试的信息）<br>  Synthetic|类、方法表、字段表|表示方法或字段为编译器自动生成的<br>  LocalVariableTypeTable|类|JDK1.5，用特征签名代替描述符<br>  RuntimeVisibleAnnotations|类、方法、字段表|JDK1.5，支持动态注解，注明注解在运行（反射调用）时的可见性<br>  RuntimeInVisibleAnnotation|类、方法、字段表|JDK1.5，与Visible相反，注明注解的不可见性<br>  AnnotationDefault|方法表|JDK1.5，记录注解类元素的默认值<br>  BootstrapMethods|类文件|JDK1.7，保存invokeddynamic指令引用的指导方法限定符</p>
+</li>
+</ul>
+<h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>名称</th>
+<th>数量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>u2</td>
+<td>attribute_name_index</td>
+<td>1</td>
+</tr>
+<tr>
+<td>u4</td>
+<td>attribute_length</td>
+<td>1</td>
+</tr>
+<tr>
+<td>u1</td>
+<td>info</td>
+<td>attribute_length</td>
+</tr>
+</tbody>
+</table>
+<h2 id="各种属性的大致介绍"><a href="#各种属性的大致介绍" class="headerlink" title="各种属性的大致介绍"></a>各种属性的大致介绍</h2><p>其实书里还给了一些具体的例子啥的…但是我不太想抄了QAQ，所以就把一些自己觉得比较重要的部分摘出来，如果大家感兴趣的话可以去搜索相关的博客或者直接阅读原著呀（参考链接当中有的）</p>
+<h3 id="Code属性"><a href="#Code属性" class="headerlink" title="Code属性"></a>Code属性</h3><p>Java程序方法体中的代码经过Javac编译器处理后，最终变为字节码指令存储在Code属性当中，Code属性出现在方法表的集合属性当中，但并非所有方法表都必须有该属性（接口/抽象方法可以没有）</p>
+<h4 id="Code属性表结构"><a href="#Code属性表结构" class="headerlink" title="Code属性表结构"></a>Code属性表结构</h4><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>名称</th>
+<th>数量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>u2</td>
+<td>attribute_name_index</td>
+<td>1</td>
+</tr>
+<tr>
+<td>u4</td>
+<td>attribute_length</td>
+<td>1</td>
+</tr>
+<tr>
+<td>u2</td>
+<td>max_stack</td>
+<td>1</td>
+</tr>
+<tr>
+<td>u2</td>
+<td>max_locals</td>
+<td>1</td>
+</tr>
+<tr>
+<td>u4</td>
+<td>code_length</td>
+<td>1</td>
+</tr>
+<tr>
+<td>u1</td>
+<td>code</td>
+<td>code_length</td>
+</tr>
+<tr>
+<td>u2</td>
+<td>exception_table_length</td>
+<td>1</td>
+</tr>
+<tr>
+<td>exception_info</td>
+<td>exception_table</td>
+<td>exception_table_length</td>
+</tr>
+<tr>
+<td>u2</td>
+<td>attributes_count</td>
+<td>1</td>
+</tr>
+<tr>
+<td>attribute_info</td>
+<td>attributes</td>
+<td>attibutes_count</td>
+</tr>
+</tbody>
+</table>
+<h4 id="Code-有关说明"><a href="#Code-有关说明" class="headerlink" title="Code_有关说明"></a>Code_有关说明</h4><ul>
+<li>code用于存储字节码</li>
+<li>code_length是u4，理论上可以达到2^32-1，但是实际上虚拟机限制了它的长度到65535</li>
+</ul>
+<h4 id="Code-Java虚拟机执行字节码的体系结构"><a href="#Code-Java虚拟机执行字节码的体系结构" class="headerlink" title="Code_Java虚拟机执行字节码的体系结构"></a>Code_Java虚拟机执行字节码的体系结构</h4><ul>
+<li>基于栈</li>
+<li>某些指令带有参数</li>
+<li><code>this</code>关键字会变成一个局部变量传入</li>
+</ul>
+<h4 id="Code-异常表"><a href="#Code-异常表" class="headerlink" title="Code_异常表"></a>Code_异常表</h4><ul>
+<li>Java异常以及Finally处理机制是通过异常表</li>
+<li>而不是跳转机制<br>（TBC…每一个都要抄上去感觉精神上有点痛苦Orz）</li>
+</ul>
+<h3 id="Exception属性"><a href="#Exception属性" class="headerlink" title="Exception属性"></a>Exception属性</h3><ul>
+<li>PS：这个属性和异常表没有关系，不要产生奇怪的误会啊啊啊啊啊</li>
+<li>那么这个有什么用呢？–（自问自答）列举出方法中可能抛出的受查异常</li>
+</ul>
+<h3 id="LineNumberTable属性"><a href="#LineNumberTable属性" class="headerlink" title="LineNumberTable属性"></a>LineNumberTable属性</h3><ul>
+<li>描述源代码行号与字节码行号（字节码偏移量）之间的关系</li>
+<li>默认生成，但不必要，可以在使用<code>javac</code>指令时分别使用<code>-g:none</code>取消生成，或者<code>-g:line</code>要求生成（不是已经默认了吗Orz）</li>
+<li>如果不生成，抛异常的时候不会显示代码行号，也没有办法设置断点调试程序</li>
+</ul>
+<h3 id="LocalVariableTable"><a href="#LocalVariableTable" class="headerlink" title="LocalVariableTable"></a>LocalVariableTable</h3><p>总体来说和LineNumberTable的作用方式有点像：</p>
+<ul>
+<li>描述栈帧当中局部变量表的变量与Java源码中定义的变量之间的关系</li>
+<li>默认生成，但不必要，可以在使用<code>javac</code>指令时分别使用<code>-g:none</code>取消生成，或者<code>-g:vars</code>要求生成（不是已经默认了吗Orz）</li>
+<li>不生成的时候，别人引用的时候不会显示参数名（用arg0/arg1之类的代替），调试期也无法根据参数名获取参数值</li>
+<li>主要属性有start_pc+index（确定局部变量的作用范围）etc…</li>
+</ul>
+<h3 id="LocalVariableTypeTable"><a href="#LocalVariableTypeTable" class="headerlink" title="LocalVariableTypeTable"></a>LocalVariableTypeTable</h3><ul>
+<li>与LocalVariableTable很像</li>
+<li>把LocalVariableTable的descriptor_index替换成了字段的特征签名（signature），因为引入泛型之后描述符难以准确地描述泛型类型了</li>
+</ul>
+<h3 id="SourceFile"><a href="#SourceFile" class="headerlink" title="SourceFile"></a>SourceFile</h3><p>记录class文件的源码文件名称</p>
+<h3 id="ConstantValue"><a href="#ConstantValue" class="headerlink" title="ConstantValue"></a>ConstantValue</h3><ul>
+<li>通知虚拟机自动为静态变量赋值</li>
+<li>类变量（static）才可以使用这项属性</li>
+<li>非类变量在实例构造器<code>&lt;init&gt;</code>方法中实现初始化，类变量则使用<code>&lt;cinit&gt;</code>或者是设置ConstantValue</li>
+<li>通常是给final static（类常量使用的），但没有硬限制，具体策略取决于JVM自己的实现</li>
+<li>一般只用于基本类型和String（自身能力有限）</li>
+</ul>
+<h3 id="Innerclass"><a href="#Innerclass" class="headerlink" title="Innerclass"></a>Innerclass</h3><ul>
+<li>记录内部类与宿主类之间的关联</li>
+<li>匿名内部类的<code>inner_name_index</code>值为0</li>
+</ul>
+<h3 id="Deprecated"><a href="#Deprecated" class="headerlink" title="Deprecated"></a>Deprecated</h3><ul>
+<li>表明作者已经不再推荐使用这种操作了</li>
+<li>由<code>@Deprecated</code>注解生成</li>
+</ul>
+<h3 id="Synthetic"><a href="#Synthetic" class="headerlink" title="Synthetic"></a>Synthetic</h3><p>表示该字段/方法不是由源码生成的而是JVM添加的（例如Bridge Method）</p>
+<h3 id="StackMapTable"><a href="#StackMapTable" class="headerlink" title="StackMapTable"></a>StackMapTable</h3><ul>
+<li>字节码验证阶段用于检查验证器</li>
+<li>用验证类型的检查替代了运行期通过数据流分析来确认字节码行为逻辑合法性的步骤</li>
+<li>太过于硬核了，感兴趣的同学自己去看看把，接下来可能也会研究一下</li>
+</ul>
+<h3 id="Signature"><a href="#Signature" class="headerlink" title="Signature"></a>Signature</h3><ul>
+<li>记录泛型签名信息</li>
+<li>使得使用擦除法的Java反射API也能获取泛型信息</li>
+</ul>
+<h3 id="BootstrapMethods"><a href="#BootstrapMethods" class="headerlink" title="BootstrapMethods"></a>BootstrapMethods</h3><ul>
+<li>保存invokeDynamic指令引用的引导方法限定符</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JVM</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/08/05/JVM学习笔记-5/">看多点 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-AQS简介" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -235,11 +498,11 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">并发</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">并发</a>
         		</li>
       		
 		</ul>
@@ -342,11 +605,11 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JVM</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JVM</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
         		</li>
       		
 		</ul>
@@ -449,11 +712,11 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JVM</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JVM</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
         		</li>
       		
 		</ul>
@@ -557,11 +820,11 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JVM</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JVM</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
         		</li>
       		
 		</ul>
@@ -867,11 +1130,11 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JVM</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JVM</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
         		</li>
       		
 		</ul>
@@ -1204,7 +1467,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">并发</a>
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1212,7 +1475,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+                <a href="javascript:void(0)" class="js-tag color3">并发</a>
               </li>
              
               <li class="article-tag-list-item">

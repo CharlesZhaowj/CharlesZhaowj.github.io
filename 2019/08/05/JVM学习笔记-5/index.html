@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>JVM学习笔记_5_class文件_属性表补充 | 上班族的奇妙冒险</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="JVM 属性表–java class 补充没有严谨的顺序要求 可以写入自己定义的属性信息，但是jvm会忽略它不认识的信息  主要属性 主要的属性如下：   属性名|使用位置|含义  –|–|–  Code|方法表|Java代码编译成的字节码指令  ConstantValue|字段表|final关键字定义的常量值  Deprecated|类、方法、字段表|被声明为Deprecated的方法和字段">
+  <meta name="description" content="JVM 属性表–java class 补充参考资料《深入理解Java虚拟机》">
 <meta name="keywords" content="Java,JVM,技术">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JVM学习笔记_5_class文件_属性表补充">
 <meta property="og:url" content="http://yoursite.com/2019/08/05/JVM学习笔记-5/index.html">
 <meta property="og:site_name" content="上班族的奇妙冒险">
-<meta property="og:description" content="JVM 属性表–java class 补充没有严谨的顺序要求 可以写入自己定义的属性信息，但是jvm会忽略它不认识的信息  主要属性 主要的属性如下：   属性名|使用位置|含义  –|–|–  Code|方法表|Java代码编译成的字节码指令  ConstantValue|字段表|final关键字定义的常量值  Deprecated|类、方法、字段表|被声明为Deprecated的方法和字段">
+<meta property="og:description" content="JVM 属性表–java class 补充参考资料《深入理解Java虚拟机》">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-05T00:51:57.791Z">
+<meta property="og:updated_time" content="2019-08-05T00:54:04.956Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JVM学习笔记_5_class文件_属性表补充">
-<meta name="twitter:description" content="JVM 属性表–java class 补充没有严谨的顺序要求 可以写入自己定义的属性信息，但是jvm会忽略它不认识的信息  主要属性 主要的属性如下：   属性名|使用位置|含义  –|–|–  Code|方法表|Java代码编译成的字节码指令  ConstantValue|字段表|final关键字定义的常量值  Deprecated|类、方法、字段表|被声明为Deprecated的方法和字段">
+<meta name="twitter:description" content="JVM 属性表–java class 补充参考资料《深入理解Java虚拟机》">
   
     <link rel="alternative" href="/atom.xml" title="上班族的奇妙冒险" type="application/atom+xml">
   
@@ -214,7 +214,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="JVM-属性表–java-class-补充"><a href="#JVM-属性表–java-class-补充" class="headerlink" title="JVM 属性表–java class 补充"></a>JVM 属性表–java class 补充</h1><h2 id="没有严谨的顺序要求"><a href="#没有严谨的顺序要求" class="headerlink" title="没有严谨的顺序要求"></a>没有严谨的顺序要求</h2><ul>
+        <h1 id="JVM-属性表–java-class-补充"><a href="#JVM-属性表–java-class-补充" class="headerlink" title="JVM 属性表–java class 补充"></a>JVM 属性表–java class 补充</h1><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>《深入理解Java虚拟机》<br><a id="more"></a></p>
+<h2 id="没有严谨的顺序要求"><a href="#没有严谨的顺序要求" class="headerlink" title="没有严谨的顺序要求"></a>没有严谨的顺序要求</h2><ul>
 <li>可以写入自己定义的属性信息，但是jvm会忽略它不认识的信息</li>
 </ul>
 <h2 id="主要属性"><a href="#主要属性" class="headerlink" title="主要属性"></a>主要属性</h2><ul>

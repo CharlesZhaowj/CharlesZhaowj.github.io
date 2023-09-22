@@ -51,9 +51,9 @@ reward_type: 2
 # 打赏wording
 reward_wording: '要恰饭的🐎'
 # 支付宝二维码图片地址，跟你设置头像的方式一样。比如：/assets/img/alipay.jpg
-alipay: /assets/img/chika.jpg
+alipay: /assets/img/jianPanShouHu.jpg
 # 微信二维码图片地址
-weixin: /assets/img/kaguya.jpg
+weixin: /assets/img/xianShiBuXing.png
 
 # 目录
 # 目录设定：0-不显示目录； 1-文章对应的md文件里有toc:true属性，才有目录； 2-所有文章均显示目录
@@ -72,7 +72,7 @@ google_analytics: ''
 favicon: /favicon.png
 
 #你的头像url
-avatar: /assets/img/kotobaNoNiwa.jpg
+avatar: /assets/img/jixiaobenben.jpg
 
 #是否开启分享
 share_jia: true
